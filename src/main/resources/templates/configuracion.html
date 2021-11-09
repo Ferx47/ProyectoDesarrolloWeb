@@ -1,0 +1,46 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="css/estilos.css" rel="stylesheet"> 
+      <link href="css/index.css" rel="stylesheet"> 
+    <title>Configuraciones</title>
+</head>
+
+<body sec:authorize="hasRole('ROLE_ADMIN')">
+   
+       	<table class="table table-striped">
+					<thead class="bg-dark text-white text-center">				
+						<tr>
+							<td>porcentaje adanual</td>
+							<td>Costo Envio desde Usa</td>					
+							<td>Costo Envio Local</td>
+							<td>Porcentaje Ganancia</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="background-color:white" th:text="${configuracion.Porcentaje_adanual}"></td>
+							<td style="background-color:white" th:text="${configuracion.Costo_USA_GT}"></td>
+							<td style="background-color:white" th:text="${configuracion.Costo_Envio_local}"></td>
+							<td style="background-color:white" th:text="${configuracion.Porcentaje_Ganancia}"></td>
+							
+							</tr>
+					</tbody>
+				</table>
+
+ 
+
+             
+      
+
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

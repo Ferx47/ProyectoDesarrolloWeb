@@ -45,4 +45,25 @@ public class ConfiguracionesController {
 		return "form-configuraciones";
 	}	
 
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")	
+	@RequestMapping(value = "/editar-configuracion", method = RequestMethod.POST)
+	public String guardarCliente(Configuraciones configuracion) {
+		Audit audit = null;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (configuracion.getId() == 1) {
+			Configuraciones configuracion2 = configuraciones.findById(configuracion.getId()).get();
+			audit = new Audit(auth.getName());
+			configuracion.setAudit(audit);
+			configuracion.setId(configuracion2.getId());
+			configuracion.getAudit().setTsCreated(configuracion2.getAudit().getTsCreated());
+			configuracion.getAudit().setUsuCreated(configuracion2.getAudit().getUsuCreated());
+		} else {
+			audit = new Audit(auth.getName());
+			configuracion.setAudit(audit);
+		}
+
+		configuraciones.save(configuracion);
+		return "redirect:/configuraciones";
+	}
 }
