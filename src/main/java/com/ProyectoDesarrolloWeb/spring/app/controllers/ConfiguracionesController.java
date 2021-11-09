@@ -62,7 +62,7 @@ public class ConfiguracionesController {
 			audit = new Audit(auth.getName());
 			configuracion.setAudit(audit);
 		}
-
+//Probando
 		configuraciones.save(configuracion);
 		return "redirect:/configuraciones";
 	}
